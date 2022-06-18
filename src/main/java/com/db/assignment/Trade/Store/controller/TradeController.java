@@ -19,6 +19,7 @@ public class TradeController {
 
     @PostMapping()
     public ResponseEntity<Trades> getOwnersList(@Valid @RequestBody Trades trade) {
+        System.out.println("Request "+trade);
        Trades trade1 =tradeService.save(trade);
        return new ResponseEntity<Trades>(trade1, HttpStatus.CREATED);
     }

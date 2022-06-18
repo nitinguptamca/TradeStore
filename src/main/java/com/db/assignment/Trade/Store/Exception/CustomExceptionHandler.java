@@ -24,7 +24,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     public final ResponseEntity<Object> handleMaturityDateException(MaturityDateException ex, WebRequest request) {
         List<String> details = new ArrayList<>();
         details.add(ex.getLocalizedMessage());
-        ErrorResponse error = new ErrorResponse(" Maturity date less then today date", details);
+        ErrorResponse error = new ErrorResponse("Maturity Date Must Be Equal Or Greater Than Today Date", details);
         return new ResponseEntity(error, HttpStatus.BAD_REQUEST);
     }
 
@@ -32,7 +32,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     public final ResponseEntity<Object> handleMinorVersionException(MinorVersionException ex, WebRequest request) {
         List<String> details = new ArrayList<>();
         details.add(ex.getLocalizedMessage());
-        ErrorResponse error = new ErrorResponse("Trade Version less then Current Trade Version", details);
+        ErrorResponse error = new ErrorResponse("Trade Version Less Then The Existing Trade Version", details);
         return new ResponseEntity(error, HttpStatus.BAD_REQUEST);
     }
 

@@ -21,11 +21,11 @@ public class Trades {
 
     @Column(name = "Version", updatable = false)
     @NotNull
-    private int Version;
+    private int version;
 
     @Column(name = "Counter_Party_Id", updatable = false)
     @NotNull
-    private String CounterPartyId;
+    private String counterPartyId;
 
     @Column(name = "Book_id", updatable = false)
     @NotNull
@@ -33,16 +33,16 @@ public class Trades {
 
     @Column(name = "Maturity_Date", updatable = false)
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-    @DateTimeFormat(pattern = "dd/mm/yyyy")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/mm/yyyy")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     @NotNull
-    private Date MaturityDate;
+    private Date maturityDate;
 
 
     @Column(name = "created_Date", updatable = false)
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-    @DateTimeFormat(pattern = "dd/mm/yyyy")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/mm/yyyy")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     @NotNull
     private Date createdDate;
 
