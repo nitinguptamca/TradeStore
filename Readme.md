@@ -27,7 +27,7 @@ http://localhost:7777/tradeStore/trade
 ```
 ##check report status /target/site/jacoco
 ##open other endpoint which apache camel with activemq 
-### start activemq server create endpoint trade create trade feed for that save as above.
+### start activemq server create queue "trade" create trade feed for that save as above.
 Step 1
 ```
 push message to queue.
