@@ -10,10 +10,10 @@ USE tradeStore;
 
 create TABLE IF NOT EXISTS trades (
   Trade_Id Varchar(4) UNSIGNED  PRIMARY KEY,
-  Counter_Party_Id VARCHAR(30),
+  counter_Party_Id VARCHAR(30),
   book_id VARCHAR(30),
-  Maturity_Date DATE,
-  Version INT,
+  maturity_Date DATE,
+  version INT,
   created_Date DATE,
   expired CHAR
 ) engine=InnoDB;

@@ -1,6 +1,22 @@
 ##Need to build project java version 11----
 ##If you don't have java 11 version then I will share docker Image for that
+prerequisites
+```
+Install mysql server
+create schema tradeStore
+create table trades
 
+create TABLE IF NOT EXISTS trades (
+  Trade_Id Varchar(4) UNSIGNED  PRIMARY KEY,
+  counter_Party_Id VARCHAR(30),
+  book_id VARCHAR(30),
+  maturity_Date DATE,
+  version INT,
+  created_Date DATE,
+  expired CHAR
+) engine=InnoDB;
+
+```
 Step 1.
 ```
 mvn clean install
