@@ -11,27 +11,31 @@ import java.util.*;
 @Entity
 @Table(name = "trades")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Trades {
 
     @Id()
-    @Column(name = "Trade_Id")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-    @Column(name = "Version", updatable = false)
+    @Column(name = "Trade_Id")
+    @NotNull
+    private String tradeId;
+
+    @Column(name = "Version")
     @NotNull
     private int version;
 
-    @Column(name = "Counter_Party_Id", updatable = false)
+    @Column(name = "Counter_Party_Id")
     @NotNull
     private String counterPartyId;
 
-    @Column(name = "Book_id", updatable = false)
+    @Column(name = "Book_id")
     @NotNull
     private String bookId;
 
-    @Column(name = "Maturity_Date", updatable = false)
+    @Column(name = "Maturity_Date")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
@@ -39,7 +43,7 @@ public class Trades {
     private Date maturityDate;
 
 
-    @Column(name = "created_Date", updatable = false)
+    @Column(name = "created_Date")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")

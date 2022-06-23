@@ -20,10 +20,10 @@ public class TradeServiceImplTest {
 
     @Before
     public void setUp() {
-        t1 = new Trades("T5", 1,
+        t1 = new Trades(10,"T5", 1,
                 "CP-1", "B1",
                 new Date("20/05/2020"), new Date("16/06/2022"), 'N');
-        validTrade = new Trades("T5", 5,
+        validTrade = new Trades(10 ,"T5", 5,
                 "CP-1", "B1",
                 new Date("20/05/2023"), new Date("16/06/2020"), 'Y');
     }
@@ -37,7 +37,7 @@ public class TradeServiceImplTest {
         Assert.assertTrue("B1".equals(trades.getBookId()));
         Assert.assertEquals(trades.getVersion(), 5);
         Assert.assertTrue("CP-1".equalsIgnoreCase(trades.getCounterPartyId()));
-        Assert.assertTrue("T5".equalsIgnoreCase(trades.getId()));
+        Assert.assertTrue("T5".equalsIgnoreCase(trades.getTradeId()));
         Assert.assertEquals(trades.getExpired(), 'Y');
     }
 
@@ -48,7 +48,7 @@ public class TradeServiceImplTest {
         Assert.assertTrue("B1".equals(trades.getBookId()));
         Assert.assertEquals(trades.getVersion(), 5);
         Assert.assertTrue("CP-1".equalsIgnoreCase(trades.getCounterPartyId()));
-        Assert.assertTrue("T5".equalsIgnoreCase(trades.getId()));
+        Assert.assertTrue("T5".equalsIgnoreCase(trades.getTradeId()));
         Assert.assertEquals(trades.getExpired(), 'Y');
     }
 
@@ -66,6 +66,4 @@ public class TradeServiceImplTest {
         validTrade.setVersion(2);
         Trades trades = tradeService.save(validTrade);
     }
-
-
 }

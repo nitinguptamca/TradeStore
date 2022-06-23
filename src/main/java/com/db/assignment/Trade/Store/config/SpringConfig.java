@@ -16,7 +16,8 @@ public class SpringConfig {
 
     @Autowired
     private TradeService tradeService;
-    @Scheduled(cron = "0 0 0 * * *")
+
+    @Scheduled(cron = "*/1 * * * * *")
     public void tradeExpire() {
         tradeService.autometicExpire();
     }

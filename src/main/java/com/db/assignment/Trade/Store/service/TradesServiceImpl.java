@@ -6,6 +6,7 @@ import com.db.assignment.Trade.Store.repository.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
+import java.time.*;
 import java.util.*;
 
 @Service
@@ -16,17 +17,12 @@ public class TradesServiceImpl implements TradeService {
     @Override
     public Trades save(Trades trade) {
         Date dateBefore = new Date(new Date().getTime() - 1 * 24 * 3600 * 1000);
+
         if (trade.getMaturityDate().before(dateBefore)) {
             /**
              * Store should not allow the trade which has less maturity date then today date.
              */
             throw new MaturityDateException("Maturity Date  << " + trade.getMaturityDate() + " >> Must Be Equal Or Greater Than Today Date");
-        }
-        /**
-         * Store should automatically update the expire flag if in a store the trade crosses the maturity date.
-         */
-        if (trade.getMaturityDate().after(dateBefore)) {
-            trade.setExpired('Y');
         }
         Optional<Trades> existingTradeOptional = tradesRepository.findById(trade.getId());
         if (existingTradeOptional.isPresent()) {
@@ -46,14 +42,8 @@ public class TradesServiceImpl implements TradeService {
     }
 
     @Override
-    public Optional<Trades> findById(String tradeId) {
-        return tradesRepository.findById(tradeId);
-    }
-
-    @Override
     public void autometicExpire() {
         Date startDate = new Date();
-        List<Trades> expireDate = tradesRepository.updateExpireDateFlag(startDate);
-
+        tradesRepository.deactivateUsersNotLoggedInSince(startDate);
     }
 }
