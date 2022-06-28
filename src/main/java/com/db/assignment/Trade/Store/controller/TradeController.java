@@ -19,7 +19,11 @@ public class TradeController {
     @Autowired
     private TradeService tradeService;
 
-    @PostMapping()
+  @RequestMapping(
+          consumes = MediaType.APPLICATION_JSON_VALUE,
+          produces = MediaType.APPLICATION_XML_VALUE,
+          method = RequestMethod.POST
+  )
     public ResponseEntity<Trades> getOwnersList(@Valid @RequestBody Trades trade) {
         log.info("Request body ::",trade);
        Trades trade1 =tradeService.save(trade);

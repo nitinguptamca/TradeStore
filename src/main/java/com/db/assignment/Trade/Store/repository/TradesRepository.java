@@ -12,10 +12,13 @@ import java.util.*;
 
 @Repository
 @Profile("spring-data-jpa")
-public interface TradesRepository extends JpaRepository<Trades,Integer> {
+public interface TradesRepository extends JpaRepository<Trades,String> {
 
     @Modifying
     @Transactional
     @Query("update Trades u set u.expired = 'Y' where u.maturityDate < :date")
     void deactivateUsersNotLoggedInSince(@Param("date") Date date);
+
+
+    Optional<Trades> findByTradeId(String tradeId);
 }

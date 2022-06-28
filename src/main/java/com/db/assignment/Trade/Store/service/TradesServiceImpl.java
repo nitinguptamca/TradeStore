@@ -24,9 +24,10 @@ public class TradesServiceImpl implements TradeService {
              */
             throw new MaturityDateException("Maturity Date  << " + trade.getMaturityDate() + " >> Must Be Equal Or Greater Than Today Date");
         }
-        Optional<Trades> existingTradeOptional = tradesRepository.findById(trade.getId());
+        Optional<Trades> existingTradeOptional = tradesRepository.findByTradeId(trade.getTradeId());
         if (existingTradeOptional.isPresent()) {
             Trades existingTrade = existingTradeOptional.get();
+            trade.setId(existingTrade.getId());
             if (existingTrade.getVersion() > trade.getVersion()) {
                 /**
                  * During transmission if the lower version is being received by the store it will reject the trade and throw an exception.
@@ -34,7 +35,7 @@ public class TradesServiceImpl implements TradeService {
                  */
                 throw new MinorVersionException("Trade Version : << " + trade.getVersion() + " >> Less Then The Existing Trade Version :" + existingTrade.getVersion());
             } else {
-                return tradesRepository.saveAndFlush(trade);
+                return tradesRepository.save(trade);
             }
         } else {
             return tradesRepository.save(trade);

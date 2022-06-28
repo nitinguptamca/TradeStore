@@ -10,6 +10,9 @@ import java.util.*;
 
 @Entity
 @Table(name = "trades")
+@NamedQueries({
+        @NamedQuery(name = "Trades.findAll", query = "select t from Trades t")
+})
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,7 +23,6 @@ public class Trades {
     private int id;
 
     @Column(name = "Trade_Id")
-    @NotNull
     private String tradeId;
 
     @Column(name = "Version")
